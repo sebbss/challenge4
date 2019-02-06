@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>iReporter|Welcome</title>
+</head>
+<body>
+    <header>
+        <nav class="nav_links">
+            <ul class="links">
+                <li><span class="logo">iReporter</span></li>
+                <li><a href="profile.html">user profile</a></li>
+                <li><a href="userLogin.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="showcase">
+        <div>
+            <h1>Work Hand In Hand With The Goverment</h1>
+            <p>Record a <em>video</em> or take a <em>picture</em> post, create a <em>red-flag</em> or an <em>intervention</em> and help make a better Uganda</p>
+        </div>
+
+    </section>
+    <section>
+        <div class="cards">
+            <div class="card_1">
+                <h1>Red-flags</h1>
+                <img src="../imgs/pexels-photo-928184.jpeg" style="width:100%">
+                <p class="price">report any corruption incident</p>
+                <p><button onclick="display()">create red-flag</button></p>
+            </div>
+            <div class="card_2">
+                <h1>intervention</h1>
+                <img src="../imgs/pexels-photo-448828.jpeg" style="width:100%">
+                <p class="price">get government attention on incidents</p>
+                <p><button onclick="displayinterv()">create intervention</button></p>
+            </div>
+        </div>
+        <form id="modal-content" class="modal">
+            <div class="modal_container">
+                <span class="close">&times;</span>
+                <h1>New Red-flag</h1>
+                <p>Please fill in this form to create a red-flag.</p>
+                <hr>
+                <label for="name"><b>name</b></label>
+                <input type="text" placeholder="Enter name of red-flag" name="name" required>
+                <label for="description"><b>description</b></label>
+                <input type="text" placeholder="enter a description" name="description" >
+                <label for="location"><b>geo location</b></label>
+                <input type="text" placeholder="enter location" name="location" >
+        
+                <label for="images"><b>images</b></label>
+                <input type="file" name="image" required>
+        
+                <label for="videos"><b>videos</b></label>
+                <input type="file" name="video" required>
+        
+                <div class="clearfix">
+                    <button id="mybtn">Create red-flag</button>
+                </div>
+            </div>
+        </form>
+        <form id="modal-interv" class="modal">
+            <div class="modal_container">
+                <span class="closei">&times;</span>
+                <h1>New intervention</h1>
+                <p>Please fill in this form to create a intervention.</p>
+                <hr>
+                <label for="name"><b>title</b></label>
+                <input type="text" placeholder="Enter name of red-flag" name="name" required>
+                <label for="description"><b>description</b></label>
+                <input type="text" placeholder="enter a description" name="description" >
+                <label for="location"><b>geo location</b></label>
+                <input type="text" placeholder="enter location" name="location" >
+        
+                <label for="images"><b>images</b></label>
+                <input type="file" name="image" required>
+        
+                <label for="videos"><b>videos</b></label>
+                <input type="file" name="video" required>
+        
+                <div class="clearfix">
+                    <button id="mybtn">Create intervention</button>
+                </div>
+            </div>
+        </form>
+
+    </section>
+    <script src="../js/flag.js"></script>
+    <script src="../js/interv.js"></script>
+</body>
+</html>
