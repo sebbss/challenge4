@@ -29,7 +29,7 @@ window.onload = function signup () {
 			localStorage.setItem('access', tkn);
 			localStorage.setItem('user', username);
 			}
-			else if (response['status'] == 200 && response['data'][0]['user']['isAdmin']=='False') {
+			else if (response['status'] == 200 && response['data'][0]['user']['isAdmin']==false) {
 				redirect:window.location.replace('user.html')
 			tkn = response['data'][0]['token'];
 			localStorage.setItem('access', tkn);
