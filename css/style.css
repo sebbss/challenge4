@@ -172,9 +172,18 @@ header a:hover{
 #profile_info div:target{
     display:block;
 }
-.hide ,.delete{
+.hide ,.delete,.updt,.update{
     float:left;
-    width:50%;
+    width:25%;
+}
+.updt{
+    background-color: green;
+}
+.update{
+    background-color: orange;
+}
+.flags{
+    background-color: black;
 }
 .hide{
     background-color: blue;

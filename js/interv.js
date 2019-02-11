@@ -10,7 +10,14 @@ var url = "http://127.0.0.1:5000/ireporter/api/v2/intervention"
 var token = localStorage.getItem('access')
 
 document.getElementById('modal-interv').addEventListener('submit', create_intervention)
-
+window.onload =function loggedin() {
+	var token = localStorage.getItem('access')
+	var user = localStorage.getItem('user')
+	var isAdmin = localStorage.getItem('role')
+	if (token == "" || isAdmin == true){
+		redirect:window.location.replace('user.html')
+	}
+}
 
 //create intervention
 
@@ -46,7 +53,13 @@ function create_intervention(e) {
 			alert('created an intervention')
 		}
 		else{
-			alert(data['message'])
+			
+			if (data['message']== "token is invalid"){
+				redirect:window.location.replace('userLogin.html')
+			}
+			else{
+				alert(data['message'])
+			}
 		}
 	})
 }
