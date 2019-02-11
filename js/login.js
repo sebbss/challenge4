@@ -22,7 +22,7 @@ window.onload = function signup () {
 			body:JSON.stringify(logindata)
 	}).then(res => res.json())
 	.then(response =>{
-		console.log(response['data'][0]['token']);
+		
 		if (response['status'] == 200 && response['data'][0]['user']['isAdmin']==true){
 				redirect:window.location.replace('admin.html')
 			tkn = response['data'][0]['token'];
