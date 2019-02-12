@@ -125,16 +125,33 @@ header a:hover{
     position: fixed;
     display:none;
     background: #f44336dc;
-    z-index: 1; /* Sit on top */
+    z-index: 1; 
     margin-top:5%;
     left: 0;
     top: 0;
-    width: 70%; /* Full width */
-    height: 80%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */ 
+    width: 70%; 
+    height: 80%; 
+    overflow: auto; 
     margin-left: 15%;
     
     
+}
+
+
+
+.updmodal{
+    position: fixed;
+    display:none;
+    background:grey;
+    z-index: 1; 
+    margin-top:10%;
+    left: 0;
+    top: 0;
+    width: 50%; 
+    height: 50%; 
+    overflow: auto; 
+    margin-left: 30%;
+
 }
 .close {
     color: #aaaaaa;
@@ -147,7 +164,7 @@ header a:hover{
 .close:hover{
     color:#fff;
 }
-.closei {
+.closei,.viewI,.closedes,.closeloc {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -155,7 +172,7 @@ header a:hover{
     color: blue;
     cursor: pointer;
 }
-.closei:hover{
+.closei:hover,{
     color:#fff;
 }
 .profile_card{

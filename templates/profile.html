@@ -19,7 +19,7 @@
         <div id="profile">
             <h1>User profile</h1>
             <img src="../imgs/download.png">
-            <p>name:<span id="usname"></span></p>
+            <p>username:<span id="usname"></span></p>
             <p>joined:<span id="reg"></span></p>
             <p>resolved red-flags/interventions: 24</p>
             <p>rejected red-flags/interventions: 24</p>
@@ -29,6 +29,26 @@
             <h1>Interventions</h1>
         </div>
     </div>
+    <form id="newloc" class = 'updmodal'>
+        <div class = "modal_container">
+            <span class="closeloc">&times;</span>
+            <label for="newlocation"><b>newlocation</b></label>
+            <input type="text" placeholder="enter a new location" id="newlocation" >
+            <button type ="submit">update</button>
+        </div>
+    </form>
+    <form id="newdes" class = 'updmodal'>
+        <div class "modal_container">
+            <span class="closedes">&times;</span>
+            <label for="newdescript"><b>new description</b></label>
+            <input type="text" placeholder="enter a new description" id="newdescription" >
+            <button type ="submit">update</button>
+        </div>
+    </form>
+    <form class="updmodal" id="viewF">
+        <span class="viewI">&times;</span>
+        <div id="userview" class="modal_container"></div>
+    </form>
 <script src="../js/profile.js"></script>
 </body>
 </html>

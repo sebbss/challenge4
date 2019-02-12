@@ -1,18 +1,18 @@
 
-var token = localStorage.getItem('access')
-var user = localStorage.getItem('user')
-var isAdmin = localStorage.getItem('role')
+var token = localStorage.getItem('access');
+var user = localStorage.getItem('user');
+var isAdmin = localStorage.getItem('role');
 if (token == "" || isAdmin == true){
 	redirect:window.location.replace('user.html')
 }
+var span2 = document.getElementsByClassName('closeloc')[0];
+var span = document.getElementsByClassName('closedes')[0];
+var span3 = document.getElementsByClassName('viewI')[0];
 
+span.onclick = function(){document.getElementById('newdes').style.display = "none";}
+span2.onclick = function(){document.getElementById('newloc').style.display = "none";}
+span3.onclick = function(){document.getElementById('viewF').style.display = "none";}
 
-
-function update_location(flag_id) {
-	localStorage.setItem('id', flag_id);
-	window.location.href='updtl${flag_id}';
-	getOne();
-}
 //get all redflags
 
 const url1 ="http://127.0.0.1:5000/ireporter/api/v2/interventions"
@@ -44,7 +44,7 @@ fetch(url1,{
 	            <div id="${object[i].flag_id}">
 	                <button class="hide" onclick ="view(${object[i].flag_id})">view</button>
 	                <button class="updt" onclick ="intervlocation(${object[i].flag_id})">update location</button>
-	                <button class="update" onclick = "intervdescription(${object[i].flag_id})">update description</button>
+	                <button class="update" id ="btn${object[i].flag_id}" onclick = "intervdescription(${object[i].flag_id})">update description</button>
 	                <button class="delete" onclick ="del_interv(${object[i].flag_id})">delete</button>
 	            </div>`
 			
@@ -72,10 +72,10 @@ fetch(url2,{
 		redirect:window.location.replace('userLogin.html')
 	}
 	else{
-		var intervention = document.getElementById('profile_info');
+		var intervention = document.getElementById('userview');
+		document.getElementById('userview').innerHTML='';
 		intervention.innerHTML+=
-		`<div id = "view${response.flag_id}">
-			<p>createdby   : ${response.createdby}</p>
+			`<p>createdby   : ${response.createdby}</p>
 			<p>createdon   : ${response.createdon}</p>
 			<p>description : ${response.description}</p>
 			<p>flag_id     : ${response.flag_id}</p>
@@ -83,9 +83,8 @@ fetch(url2,{
 			<p>image       : ${response.image}</p>
 			<p>location    : ${response.location}</p>
 			<p>status      : ${response.status}</p>
-			<p>video       : ${response.video}</p>
-		</div>`
-		window.location.href=`#view${flag_id}`;
+			<p>video       : ${response.video}</p>`
+		document.getElementById('viewF').style.display="block";
 	}
 })
 }
@@ -93,17 +92,9 @@ fetch(url2,{
 //update location
 function intervlocation(flag_id) {
 	const url3 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/location`
-	var location = document.getElementById('profile_info');
-	location.innerHTML+=
-	`<div id="loc${flag_id}">
-	<form id="newloc">
-	<label for="newlocation"><b>newlocation</b></label>
-    <input type="text" placeholder="enter a new location" id="newlocation" >
-    <button type ="submit">update</button>
-	</form>
-	</div>`
-	window.location.href=`#loc${flag_id}`;
-	console.log('test');'test'
+	
+    document.getElementById('newloc').style.display = "block";
+
 	document.getElementById('newloc').addEventListener('submit', updateloc)
 	function updateloc(e) {
 		e.preventDefault();
@@ -136,16 +127,9 @@ function intervlocation(flag_id) {
 //update description
 function intervdescription(flag_id) {
 	const url4 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/description`
-	var description = document.getElementById('profile_info');
-	description.innerHTML+=	
-	`<div id="des${flag_id}">
-	<form id="newdes">
-	<label for="newdescription"><b>newdescription</b></label>
-    <input type="text" placeholder="enter a new location" id="newdescription" >
-    <button type ="submit">update</button>
-	</form>
-	</div>`
-	window.location.href=`#des${flag_id}`;
+
+	document.getElementById('newdes').style.display = "block";
+
 	document.getElementById('newdes').addEventListener('submit', updatedes)
 	function updatedes(e) {
 		e.preventDefault();
