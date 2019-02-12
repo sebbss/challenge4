@@ -45,7 +45,7 @@ fetch(url1,{
 	                <button class="hide" onclick ="view(${object[i].flag_id})">view</button>
 	                <button class="updt" onclick ="intervlocation(${object[i].flag_id})">update location</button>
 	                <button class="update" onclick = "intervdescription(${object[i].flag_id})">update description</button>
-	                <button class="delete">delete</button>
+	                <button class="delete" onclick ="del_interv(${object[i].flag_id})">delete</button>
 	            </div>`
 			
 		}
@@ -174,4 +174,33 @@ function intervdescription(flag_id) {
 		}
 	})
 }
+}
+
+//delete intervention
+
+function del_interv(flag_id) {
+	const url5 = `http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}`
+
+	fetch(url5,{
+		method:'DELETE',
+		headers:{
+			Authorization:`Bearer ${token}`
+		},
+		mode:'cors'
+		}).	then(res => res.json())
+	.then(response =>{
+		console.log(response);
+		if (response['status']==202){
+			redirect:window.location.replace('profile.html');
+		}
+		else{
+			if (response['message']=="token is invalid"){
+				redirect:window.location.replace('userLogin.html');
+			}
+			else{
+				alert(response['message']);
+			}
+
+		}
+	})
 }
