@@ -88,9 +88,9 @@ fetch(rurl1,{
 				`<button id="flags" onclick="window.location.href='#${object2[i].flag_id}'">${object2[i].description}</button>
 	            <li id="${object2[i].flag_id}">
 	                <button class="hide" onclick ="flagview(${object2[i].flag_id})">view</button>
-	                <button class="updt" onclick ="intervlocation(${object2[i].flag_id})">update location</button>
-	                <button class="update" onclick = "intervdescription(${object2[i].flag_id})">update description</button>
-	                <button class="delete" onclick ="del_interv(${object2[i].flag_id})">delete</button>
+	                <button class="updt" onclick ="flaglocation(${object2[i].flag_id})">update location</button>
+	                <button class="update" onclick = "flagdescription(${object2[i].flag_id})">update description</button>
+	                <button class="delete" onclick ="del_flag(${object2[i].flag_id})">delete</button>
 	            </li>`
 		}
 		}
@@ -133,6 +133,41 @@ fetch(url2,{
 })
 }
 
+//get specific red-flag
+function flagview(flag_id) {
+	const rurl2 =`http://127.0.0.1:5000/ireporter/api/v1/flags/${flag_id}`
+	
+
+fetch(rurl2,{
+	methods:'GET',
+	headers:{
+		Authorization:`Bearer ${token}`
+	},
+	mode:'cors'
+}).then(res => res.json())
+.then(response =>{
+	if (response['message']=="token is invalid"||response['message']=="flag with that id doesnot exist") {
+		redirect:window.location.replace('userLogin.html')
+	}
+	else{
+		var redflag = document.getElementById('userview');
+		document.getElementById('userview').innerHTML='';
+		redflag.innerHTML+=
+			`<p>createdby   : ${response.createdby}</p>
+			<p>createdon   : ${response.createdon}</p>
+			<p>description : ${response.description}</p>
+			<p>flag_id     : ${response.flag_id}</p>
+			<p>flag_type   : ${response.flag_type}</p>
+			<p>image       : ${response.image}</p>
+			<p>location    : ${response.location}</p>
+			<p>status      : ${response.status}</p>
+			<p>video       : ${response.video}</p>`
+		document.getElementById('viewF').style.display="block";
+	}
+})
+}
+
+
 //update location intervention
 function intervlocation(flag_id) {
 	const url3 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/location`
@@ -168,6 +203,7 @@ function intervlocation(flag_id) {
 	})
 }
 }
+
 //update description intervention
 function intervdescription(flag_id) {
 	const url4 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/description`
