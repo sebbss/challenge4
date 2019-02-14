@@ -167,7 +167,6 @@ fetch(rurl2,{
 })
 }
 
-
 //update location intervention
 function intervlocation(flag_id) {
 	const url3 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/location`
@@ -179,6 +178,42 @@ function intervlocation(flag_id) {
 		e.preventDefault();
 		var new_loc = document.getElementById('newlocation').value
 	fetch(url3,{
+		method:'PATCH',
+		mode:'cors',
+		headers:{
+				'content-Type':'application/json',
+				'Accept':'application/json',
+				Authorization:`Bearer ${token}`
+			},
+		body:JSON.stringify({location:new_loc})
+	}).then(res => res.json())
+	.then(response => {
+		if (response['status']==200 ) {
+			redirect:window.location.replace('profile.html');
+		}
+		else{
+			if (response['message']=="token is invalid"){
+				redirect:window.location.replace('userLogin.html');
+			}
+			else{
+				alert(response['message']);
+			}
+		}
+	})
+}
+}
+
+//update location redflag
+function flaglocation(flag_id) {
+	const rurl3 =`http://127.0.0.1:5000/ireporter/api/v1/flags/${flag_id}/location`;
+	
+    document.getElementById('newloc').style.display = "block";
+
+	document.getElementById('newloc').addEventListener('submit', updaterloc)
+	function updaterloc(e) {
+		e.preventDefault();
+		var new_loc = document.getElementById('newlocation').value
+	fetch(rurl3,{
 		method:'PATCH',
 		mode:'cors',
 		headers:{
@@ -240,6 +275,42 @@ function intervdescription(flag_id) {
 }
 }
 
+//update description redflag
+function flagdescription(flag_id) {
+	const rurl4 =`http://127.0.0.1:5000/ireporter/api/v1/flags/${flag_id}/description`
+
+	document.getElementById('newdes').style.display = "block";
+
+	document.getElementById('newdes').addEventListener('submit', updaterdes)
+	function updaterdes(e) {
+		e.preventDefault();
+		var new_des = document.getElementById('newdescription').value
+	fetch(rurl4,{
+		method:'PATCH',
+		mode:'cors',
+		headers:{
+				'content-Type':'application/json',
+				'Accept':'application/json',
+				Authorization:`Bearer ${token}`
+			},
+		body:JSON.stringify({description:new_des})
+	}).then(res => res.json())
+	.then(response => {
+		if (response['status']==200 ) {
+			redirect:window.location.replace('profile.html');
+		}
+		else{
+			if (response['message']=="token is invalid"){
+				redirect:window.location.replace('userLogin.html');
+			}
+			else{
+				alert(response['message']);
+			}
+		}
+	})
+}
+}
+
 //delete intervention 
 
 function del_interv(flag_id) {
@@ -270,4 +341,30 @@ function del_interv(flag_id) {
 }
 
 
-//
+//delete red-flag
+
+function del_flag(flag_id) {
+	const rurl5 = `http://127.0.0.1:5000/ireporter/api/v1/flags/${flag_id}`
+
+	fetch(url5,{
+		method:'DELETE',
+		headers:{
+			Authorization:`Bearer ${token}`
+		},
+		mode:'cors'
+		}).	then(res => res.json())
+	.then(response =>{
+		if (response['status']==202){
+			redirect:window.location.replace('profile.html');
+		}
+		else{
+			if (response['message']=="token is invalid"){
+				redirect:window.location.replace('userLogin.html');
+			}
+			else{
+				alert(response['message']);
+			}
+
+		}
+	})
+}
