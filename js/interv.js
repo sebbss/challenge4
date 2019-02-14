@@ -1,9 +1,10 @@
 var span = document.getElementsByClassName('closei')[0]
+var modal2 = document.getElementById('intervmodal');
 function displayinterv(){
-    document.getElementById('modal-interv').style.display = "block";
+    modal2.style.display = "block";
 }
 span.onclick = function(){
-    document.getElementById('modal-interv').style.display = "none";
+    modal2.style.display = "none";
 }
 
 var url = "http://127.0.0.1:5000/ireporter/api/v2/intervention"
@@ -51,6 +52,7 @@ function create_intervention(e) {
 	.then(data =>{
 		if (data['status']==201){
 			alert('created an intervention')
+			redirect:window.location.replace('user.html');
 		}
 		else{
 			

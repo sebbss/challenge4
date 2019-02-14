@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/style.css">
     <title>iReporter|Admin</title>
+    <script src="../js/admin.js"></script>
 </head>
 <body>
     <nav class="nav_links">
@@ -21,134 +22,42 @@
             <img src="../imgs/download.png">
             <p>name:senabulya joseph</p>
         </div>
-        <div>
-            <table class="admin_table1">
-            <h1>Red Flags</h1>
+        <div id ="admininterv">
+            <table class="admin_table1" >
+            <h1>interventions</h1>
             <tr>
-                <th>User</th>
-                <th>title</th>
+                <th>createdby</th>
+                <th>createdon</th>
                 <th>description</th>
+                <th>flag_id</th>
+                <th>flag_type</th>
+                <th>image</th>
+                <th>location</th>
                 <th>status</th>
+                <th>video</th>
+                <th>update status</th>
             </tr>
-            <tr>
-                <td>james kato</td>
-                <td>traffic officer takes bribe</td>
-                <td>a man brided a office after running the redlight.</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>james kato</td>
-                <td>traffic officer takes bribe</td>
-                <td>a man brided a office after running the redlight.</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>james kato</td>
-                <td>traffic officer takes bribe</td>
-                <td>a man brided a office after running the redlight.</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>james kato</td>
-                <td>traffic officer takes bribe</td>
-                <td>a man brided a office after running the redlight.</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>james kato</td>
-                <td>traffic officer takes bribe</td>
-                <td>a man brided a office after running the redlight.</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
+            <tbody id="interventions_Data"></tbody>
+            
+           
             </table>
         </div>
-        <div>
+        <div id = "adminflags">
             <table class="admin_table2">
-            <h1>Interventions</h1>
+            <h1>Red-flags</h1>
             <tr>
-                <th>User</th>
-                <th>title</th>
+                <th>createdby</th>
+                <th>createdon</th>
                 <th>description</th>
+                <th>flag_id</th>
+                <th>flag_type</th>
+                <th>image</th>
+                <th>location</th>
                 <th>status</th>
+                <th>video</th>
+                <th>update status</th>
             </tr>
-            <tr>
-                <td>james kato</td>
-                <td>road construction at bwaise</td>
-                <td>bwaise road needs construction</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>james kato</td>
-                <td>road construction at bwaise</td>
-                <td>bwaise road needs construction</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>james kato</td>
-                <td>road construction at bwaise</td>
-                <td>bwaise road needs construction</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>james kato</td>
-                <td>road construction at bwaise</td>
-                <td>bwaise road needs construction</td>
-                <td class="dropdown">
-                    <select>
-                        <option>under investigation</option>
-                        <option>resolved</option>
-                        <option>rejected</option>
-                    </select>
-                </td>
-            </tr>
+            <tbody id = "flags_Data"></tbody>
             </table>
         </div>
     </div>   

@@ -8,12 +8,17 @@ if (token == "" || isAdmin == true){
 var span2 = document.getElementsByClassName('closeloc')[0];
 var span = document.getElementsByClassName('closedes')[0];
 var span3 = document.getElementsByClassName('viewI')[0];
-
+var modal = document.getElementById('newloc');
 span.onclick = function(){document.getElementById('newdes').style.display = "none";}
 span2.onclick = function(){document.getElementById('newloc').style.display = "none";}
 span3.onclick = function(){document.getElementById('viewF').style.display = "none";}
+window.onclick = function(event) {
+	if(event.target==modal){
+		modal.style.display ='none';
+	}
+}
 
-//get all redflags
+//get all interventions
 
 const url1 ="http://127.0.0.1:5000/ireporter/api/v2/interventions"
 fetch(url1,{
@@ -30,23 +35,23 @@ fetch(url1,{
 	else{
 		const object =response['interventions']
 		if (object == null){
-			var interventions = document.getElementById('profile_info');
+			var interventions = document.getElementById('Interventions');
 			interventions.innerHTML+=
 			`<p>You Have Not Made Any Interventions Yet</p>`
 		}
 		else {
-			console.log(object[0].createdon)	
+		
 			for (var i=0; i<object.length;i++){
-				console.log(object[i].createdon);
-				var interventions = document.getElementById('profile_info');
+			
+				var interventions = document.getElementById('Interventions');
 				interventions.innerHTML+=
 				`<button id="flags" onclick="window.location.href='#${object[i].flag_id}'">${object[i].description}</button>
-	            <div id="${object[i].flag_id}">
+	            <li id="${object[i].flag_id}">
 	                <button class="hide" onclick ="view(${object[i].flag_id})">view</button>
 	                <button class="updt" onclick ="intervlocation(${object[i].flag_id})">update location</button>
-	                <button class="update" id ="btn${object[i].flag_id}" onclick = "intervdescription(${object[i].flag_id})">update description</button>
+	                <button class="update" onclick = "intervdescription(${object[i].flag_id})">update description</button>
 	                <button class="delete" onclick ="del_interv(${object[i].flag_id})">delete</button>
-	            </div>`
+	            </li>`
 			
 		}
 		}
@@ -54,7 +59,46 @@ fetch(url1,{
 	
 })
 
-//get specific refFlag
+
+//get all red-flags
+const rurl1 ="http://127.0.0.1:5000/ireporter/api/v1/flags"
+fetch(rurl1,{
+	methods:'GET',
+	headers:{
+		Authorization:`Bearer ${token}`
+	},
+	mode:'cors'
+}).then(res => res.json())
+.then(response => {
+	if (response['message']=="token is invalid") {
+		redirect:window.location.replace('userLogin.html')
+	}
+	else{
+		const object2 =response['red_flags']
+		if (object2 == null){
+			var redflags = document.getElementById('Redflags');
+			redflags.innerHTML+=
+			`<p>You Have Not Made Any Interventions Yet</p>`
+		}
+		else {	
+			for (var i=0; i<object2.length;i++){
+
+				var redflags = document.getElementById('Redflags');
+				redflags.innerHTML+=
+				`<button id="flags" onclick="window.location.href='#${object2[i].flag_id}'">${object2[i].description}</button>
+	            <li id="${object2[i].flag_id}">
+	                <button class="hide" onclick ="flagview(${object2[i].flag_id})">view</button>
+	                <button class="updt" onclick ="intervlocation(${object2[i].flag_id})">update location</button>
+	                <button class="update" onclick = "intervdescription(${object2[i].flag_id})">update description</button>
+	                <button class="delete" onclick ="del_interv(${object2[i].flag_id})">delete</button>
+	            </li>`
+		}
+		}
+		}
+	
+})
+
+//get specific intervention
 
 function view(flag_id) {
 	const url2 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}`
@@ -89,7 +133,7 @@ fetch(url2,{
 })
 }
 
-//update location
+//update location intervention
 function intervlocation(flag_id) {
 	const url3 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/location`
 	
@@ -124,7 +168,7 @@ function intervlocation(flag_id) {
 	})
 }
 }
-//update description
+//update description intervention
 function intervdescription(flag_id) {
 	const url4 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/description`
 
@@ -160,7 +204,7 @@ function intervdescription(flag_id) {
 }
 }
 
-//delete intervention
+//delete intervention 
 
 function del_interv(flag_id) {
 	const url5 = `http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}`
@@ -188,3 +232,6 @@ function del_interv(flag_id) {
 		}
 	})
 }
+
+
+//

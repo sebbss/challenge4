@@ -39,7 +39,8 @@
                 <p><button onclick="displayinterv()">create intervention</button></p>
             </div>
         </div>
-        <form id="modal-content" class="modal">
+        <div id ="flagmodal" class="modal">
+        <form id="modal-content" class="modal-content">
             <div class="modal_container">
                 <span class="close">&times;</span>
                 <h1>New Red-flag</h1>
@@ -61,7 +62,9 @@
                 </div>
             </div>
         </form>
-        <form id="modal-interv" class="modal">
+        </div>
+        <div id="intervmodal" class="modal">
+        <form id="modal-interv" class="modal-content">
             <div class="modal_container">
                 <span class="closei">&times;</span>
                 <h1>New intervention</h1>
@@ -83,7 +86,7 @@
                 </div>
             </div>
         </form>
-
+        </div>
     </section>
     <script src="../js/flag.js"></script>
     <script src="../js/interv.js"></script>

@@ -31,17 +31,8 @@ window.onload = function signup () {
 			body:JSON.stringify(userData)
 		}).then(resp => resp.json())
 		.then(response =>{
-			if (response['status'] == 201 && response['data'][0]['user']['isAdmin']=='True'){
-				redirect:window.location.replace('admin.html')
-			tkn = response['data'][0]['token'];
-			localStorage.setItem('access', tkn);
-			localStorage.setItem('user', username);
-			}
-			else if (response['status'] == 201 && response['data'][0]['user']['isAdmin']=='False') {
-				redirect:window.location.replace('user.html')
-			tkn = response['data'][0]['token'];
-			localStorage.setItem('access', tkn);
-			localStorage.setItem('user', username);
+			if (response['status'] == 201){
+				redirect:window.location.replace('userLogin.html')
 			}
 			else{
 				alert(response['message'])

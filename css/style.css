@@ -8,7 +8,7 @@ body{
 
 
 input[type=text],input[type=email], input[type=password] {
-    width: 100%;
+    width: 95%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
@@ -115,24 +115,30 @@ header a:hover{
     padding:16px;
     text-align: center;
 }
+.modal-content{
+    width:50%;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    background: grey;
+}
 .modal_container{
-    width:90%;
-    margin:0 auto;
-    position: relative;
+    padding: 16px;
+
+
 }
 .modal{
     
     position: fixed;
     display:none;
-    background: #f44336dc;
+    background-color: #white;
+    opacity: 0.97;
     z-index: 1; 
-    margin-top:5%;
     left: 0;
     top: 0;
-    width: 70%; 
-    height: 80%; 
+    width: 100%; 
+    height: 100%; 
     overflow: auto; 
-    margin-left: 15%;
+    padding-top: 30px;
     
     
 }
@@ -183,10 +189,10 @@ header a:hover{
     margin:0 auto;
     margin-top:30px;
 }
-#profile_info div{
+#profile_info li{
     display:none;
 }
-#profile_info div:target{
+#profile_info li:target{
     display:block;
 }
 .hide ,.delete,.updt,.update{
