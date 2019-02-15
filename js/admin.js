@@ -40,21 +40,15 @@ fetch(url1,{
 		}
 		}
 		}
-	
-})
-
-fetch(url2,{
+	return fetch(url2,{
 	methods:'GET',
 	headers:{
 		Authorization:`Bearer ${token}`
 	},
 	mode:'cors'
-}).then(res => res.json())
-.then(response => {
-	if (response['message']=="token is invalid" || role == false) {
-		redirect:window.location.replace('userLogin.html')
-	}
-	else{
+	}).then(res => res.json())
+	.then(response => {
+
 		const object2 =response['red_flags']
 		if (object2 == null){
 			var flags = document.getElementById('adminflags');
@@ -80,11 +74,75 @@ fetch(url2,{
 			
 		}
 		}
-		}
+		
 	
+})
 })
 
 
+//update status red-flag
+
+function flagstatus(flag_id) {
+	const url3 =`http://127.0.0.1:5000/red_flags/${flag_id}/status`
+	
+    document.getElementById('newstatus').style.display = "block";
+
+	document.getElementById('newstatus').addEventListener('submit', updatestatus)
+	function updatestatus(e) {
+		e.preventDefault();
+		var new_status = document.getElementById('status').value
+	fetch(url3,{
+		method:'PATCH',
+		mode:'cors',
+		headers:{
+				'content-Type':'application/json',
+				'Accept':'application/json',
+				Authorization:`Bearer ${token}`
+			},
+		body:JSON.stringify({status:new_status})
+	}).then(res => res.json())
+	.then(response => {
+		if (response['status']==200 ) {
+			redirect:window.location.replace('admin.html');
+		}
+		else{
+			redirect:window.location.replace('userLogin.html');
+		}
+			
+	})
+}
+}
 
 
+//update status intervention
+function intervstatus(flag_id) {
+	const url3 =`http://127.0.0.1:5000/interventions/${flag_id}/status`
+	
+    document.getElementById('newstatus').style.display = "block";
+
+	document.getElementById('newstatus').addEventListener('submit', updatestatus)
+	function updatestatus(e) {
+		e.preventDefault();
+		var new_status = document.getElementById('status').value
+	fetch(url3,{
+		method:'PATCH',
+		mode:'cors',
+		headers:{
+				'content-Type':'application/json',
+				'Accept':'application/json',
+				Authorization:`Bearer ${token}`
+			},
+		body:JSON.stringify({status:new_status})
+	}).then(res => res.json())
+	.then(response => {
+		if (response['status']==200 ) {
+			redirect:window.location.replace('admin.html');
+		}
+		else{
+			redirect:window.location.replace('userLogin.html');
+		}
+			
+	})
+}
+}
 

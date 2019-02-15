@@ -60,6 +60,19 @@
             <tbody id = "flags_Data"></tbody>
             </table>
         </div>
-    </div>   
+    </div> 
+    <form id="newstatus" class = 'updmodal'>
+        <div class = "modal_container">
+            <span class="closest">&times;</span>
+            <label for="newstatus"><b>select a status</b></label>
+            <select name="status" id="status">
+                <option value="none">none</option>
+                <option value="under investigation">under investigation</option>
+                <option value="resolved">resolved</option>
+                <option value="rejected">rejected</option>
+            </select>
+            <button type ="submit">update</button>
+        </div>
+    </form>  
 </body>
 </html>

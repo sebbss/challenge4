@@ -3,7 +3,7 @@ body{
     height: 100vh;
     background-size: cover;
     color:rgb(1, 20, 19);
-    background: linear-gradient(rgba(255, 0, 0, 0.253), #9198e533);
+    background: linear-gradient(rgba(255, 0, 0, 0.253), #ffffff);
 }
 
 
@@ -222,11 +222,14 @@ header a:hover{
 }
 table{
     clear:both;
+    width:100%;
     
 }
 th,td{
     padding: 7px 10px 10px 10px;
     font-size: 12px;
+    width:10px;
+    height:50px;
 }
 th{
     text-transform: uppercase;
@@ -247,4 +250,5 @@ td{
 }
 .admin_table1, .admin_table2 h1{
     font-size:20px;
+
 }
