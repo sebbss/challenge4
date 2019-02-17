@@ -2,9 +2,7 @@
 var token = localStorage.getItem('access');
 var user = localStorage.getItem('user');
 var isAdmin = localStorage.getItem('role');
-if (token == "" || isAdmin == true){
-	redirect:window.location.replace('user.html')
-}
+
 var span2 = document.getElementsByClassName('closeloc')[0];
 var span = document.getElementsByClassName('closedes')[0];
 var span3 = document.getElementsByClassName('viewI')[0];
@@ -29,7 +27,7 @@ fetch(url1,{
 	mode:'cors'
 }).then(res => res.json())
 .then(response => {
-	if (response['message']=="token is invalid") {
+	if (response['message']=="token is invalid" || isAdmin == true) {
 		redirect:window.location.replace('userLogin.html')
 	}
 	else{
@@ -93,43 +91,7 @@ fetch(url1,{
 })
 
 
-//get all red-flags
-// const rurl1 ="http://127.0.0.1:5000/ireporter/api/v1/flags"
-// fetch(rurl1,{
-// 	methods:'GET',
-// 	headers:{
-// 		Authorization:`Bearer ${token}`
-// 	},
-// 	mode:'cors'
-// }).then(res => res.json())
-// .then(response => {
-// 	if (response['message']=="token is invalid") {
-// 		redirect:window.location.replace('userLogin.html')
-// 	}
-// 	else{
-// 		const object2 =response['red_flags']
-// 		if (object2 == null){
-// 			var redflags = document.getElementById('Redflags');
-// 			redflags.innerHTML+=
-// 			`<p>You Have Not Made Any Interventions Yet</p>`
-// 		}
-// 		else {	
-// 			for (var i=0; i<object2.length;i++){
 
-// 				var redflags = document.getElementById('Redflags');
-// 				redflags.innerHTML+=
-// 				`<button id="flags" onclick="window.location.href='#${object2[i].flag_id}'">${object2[i].description}</button>
-// 	            <li id="${object2[i].flag_id}">
-// 	                <button class="hide" onclick ="flagview(${object2[i].flag_id})">view</button>
-// 	                <button class="updt" onclick ="flaglocation(${object2[i].flag_id})">update location</button>
-// 	                <button class="update" onclick = "flagdescription(${object2[i].flag_id})">update description</button>
-// 	                <button class="delete" onclick ="del_flag(${object2[i].flag_id})">delete</button>
-// 	            </li>`
-// 		}
-// 		}
-// 		}
-	
-// })
 
 //get specific intervention
 
@@ -201,7 +163,7 @@ fetch(rurl2,{
 }
 
 //update location intervention
-function intervlocation(flag_id) {
+ function intervlocation(flag_id) {
 	const url3 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/location`
 	
     document.getElementById('newloc').style.display = "block";
