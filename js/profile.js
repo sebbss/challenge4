@@ -31,7 +31,7 @@ var rdraft =0;
 
 //get all interventions
 
-const url1 ="http://127.0.0.1:5000/ireporter/api/v2/interventions"
+const url1 ="https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v2/interventions"
 fetch(url1,{
 	methods:'GET',
 	headers:{
@@ -68,8 +68,8 @@ fetch(url1,{
 			
 				var interventions = document.getElementById('Interventions');
 				interventions.innerHTML+=
-				`<button id="flags" onclick="window.location.href='#${object[i].flag_id}'">intervention ${object[i].flag_id}</button>
-	            <li id="${object[i].flag_id}">
+				`<button id="flags" onclick="window.location.href='#in${object[i].flag_id}'">intervention ${object[i].flag_id}</button>
+	            <li id="in${object[i].flag_id}">
 	                <button class="hide" onclick ="view(${object[i].flag_id})">view</button>
 	                <button class="updt" onclick ="intervlocation(${object[i].flag_id})">update loc</button>
 	                <button class="update" onclick = "intervdescription(${object[i].flag_id})">update desc</button>
@@ -85,7 +85,7 @@ fetch(url1,{
 		}
 		}
 
-	return fetch("http://127.0.0.1:5000/ireporter/api/v1/flags",{
+	return fetch("https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v1/flags",{
 	methods:'GET',
 	headers:{
 		Authorization:`Bearer ${token}`
@@ -117,8 +117,8 @@ fetch(url1,{
 
 				var redflags = document.getElementById('Redflags');
 				redflags.innerHTML+=
-				`<button id="flags" onclick="window.location.href='#${object2[i].flag_id}'">red-flag ${object2[i].flag_id}</button>
-	            <li id="${object2[i].flag_id}">
+				`<button id="flags" onclick="window.location.href='#re${object2[i].flag_id}'">red-flag ${object2[i].flag_id}</button>
+	            <li id="re${object2[i].flag_id}">
 	                <button class="hide" onclick ="flagview(${object2[i].flag_id})">view</button>
 	                <button class="updt" onclick ="flaglocation(${object2[i].flag_id})">update loc</button>
 	                <button class="update" onclick = "flagdescription(${object2[i].flag_id})">update desc</button>
@@ -126,7 +126,7 @@ fetch(url1,{
 	                <button class="upload" onclick="upload_flag(${object2[i].flag_id})">upload</button>
 	            </li>`
 		}
-		document.getElementById('draft_flags').innerHTML+=rdraft;2
+		document.getElementById('draft_flags').innerHTML+=rdraft;
 		document.getElementById('res_flags').innerHTML+=rresolved;
 		document.getElementById('rej_flags').innerHTML+=rrejected;
 		document.getElementById('un_flags').innerHTML+=runderinvestigation;
@@ -143,7 +143,7 @@ fetch(url1,{
 //get specific intervention
 
 function view(flag_id) {
-	const url2 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}`
+	const url2 =`https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v2/intervention/${flag_id}`
 	
 
 fetch(url2,{
@@ -177,7 +177,7 @@ fetch(url2,{
 
 //get specific red-flag
 function flagview(flag_id) {
-	const rurl2 =`http://127.0.0.1:5000/ireporter/api/v1/flags/${flag_id}`
+	const rurl2 =`https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v1/flags/${flag_id}`
 	
 
 fetch(rurl2,{
@@ -211,7 +211,7 @@ fetch(rurl2,{
 
 //update location intervention
  function intervlocation(flag_id) {
-	const url3 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/location`
+	const url3 =`https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v2/intervention/${flag_id}/location`
 	
     document.getElementById('newloc').style.display = "block";
 
@@ -247,7 +247,7 @@ fetch(rurl2,{
 
 //update location redflag
 function flaglocation(flag_id) {
-	const rurl3 =`http://127.0.0.1:5000/ireporter/api/v1/flags/${flag_id}/location`;
+	const rurl3 =`https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v1/flags/${flag_id}/location`;
 	
     document.getElementById('newloc').style.display = "block";
 
@@ -283,7 +283,7 @@ function flaglocation(flag_id) {
 
 //update description intervention
 function intervdescription(flag_id) {
-	const url4 =`http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}/description`
+	const url4 =`https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v2/intervention/${flag_id}/description`
 
 	document.getElementById('newdes').style.display = "block";
 
@@ -319,7 +319,7 @@ function intervdescription(flag_id) {
 
 //update description redflag
 function flagdescription(flag_id) {
-	const rurl4 =`http://127.0.0.1:5000/ireporter/api/v1/flags/${flag_id}/description`
+	const rurl4 =`https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v1/flags/${flag_id}/description`
 
 	document.getElementById('newdes').style.display = "block";
 
@@ -356,7 +356,7 @@ function flagdescription(flag_id) {
 //delete intervention 
 
 function del_interv(flag_id) {
-	const url5 = `http://127.0.0.1:5000/ireporter/api/v2/intervention/${flag_id}`
+	const url5 = `https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v2/intervention/${flag_id}`
 
 	fetch(url5,{
 		method:'DELETE',
@@ -386,7 +386,7 @@ function del_interv(flag_id) {
 //delete red-flag
 
 function del_flag(flag_id) {
-	const rurl5 = `http://127.0.0.1:5000/ireporter/api/v1/flags/${flag_id}`
+	const rurl5 = `https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v1/flags/${flag_id}`
 
 	fetch(rurl5,{
 		method:'DELETE',
@@ -426,3 +426,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYnNzIiwiYSI6ImNqc2ExMWdyeTFoM3U0YnM4ejE2M
         map3.on('click', function (e) {
             document.getElementById('newlocation').value=(e.lngLat);
         });
+
+// upload file
+function upload_interv(flag_id) {
+	const urlfile = ``
+}

@@ -2,8 +2,8 @@ var span = document.getElementsByClassName('closestatus')[0];
 
 var role = localStorage.getItem('role');
 var token =localStorage.getItem('access');
-const url1 ="http://127.0.0.1:5000/ireporter/api/v2/interventions";
-const url2 ="http://127.0.0.1:5000/ireporter/api/v1/flags";
+const url1 ="https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v2/interventions";
+const url2 ="https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v1/flags";
 fetch(url1,{
 	methods:'GET',
 	headers:{
@@ -85,7 +85,7 @@ fetch(url1,{
 //update status red-flag
 
 function flagstatus(flag_id) {
-	const url3 =`http://127.0.0.1:5000/red_flags/${flag_id}/status`
+	const url3 =`https://ireporter-challenge-3r.herokuapp.com/red_flags/${flag_id}/status`
 	
     document.getElementById('newstatus').style.display = "block";
 
@@ -118,7 +118,7 @@ function flagstatus(flag_id) {
 
 //update status intervention
 function intervstatus(flag_id) {
-	const url3 =`http://127.0.0.1:5000/interventions/${flag_id}/status`
+	const url3 =`https://ireporter-challenge-3r.herokuapp.com/interventions/${flag_id}/status`
 	
     document.getElementById('newstatus').style.display = "block";
 

@@ -7,7 +7,7 @@ span.onclick = function(){
     modal2.style.display = "none";
 }
 
-var url = "http://127.0.0.1:5000/ireporter/api/v2/intervention"
+var url = "https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v2/intervention"
 var token = localStorage.getItem('access')
 
 document.getElementById('modal-interv').addEventListener('submit', create_intervention)

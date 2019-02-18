@@ -12,7 +12,7 @@ window.onload = function loggedon () {
 		};
 		
 
-	fetch('http://127.0.0.1:5000/login', {
+	fetch('https://ireporter-challenge-3r.herokuapp.com/login', {
 			method:'POST',
 			mode:'cors',
 			headers:{

@@ -8,7 +8,7 @@ span.onclick = function(){
     modal.style.display = "none";
 }
 
-var urlred = "http://127.0.0.1:5000/ireporter/api/v1/flag"
+var urlred = "https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v1/flag"
 var token = localStorage.getItem('access');
 
 document.getElementById('modal-content').addEventListener('submit', create_redFlag)
@@ -80,19 +80,5 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYnNzIiwiYSI6ImNqc2ExMWdyeTFoM3U0YnM4ejE2M
             document.getElementById('rlocation').value=(e.lngLat);
         });
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYnNzIiwiYSI6ImNqc2ExMWdyeTFoM3U0YnM4ejE2MG43YzUifQ.Ec3dgrMA8_24RNBlk2rxxA';
-        var map3 = new mapboxgl.Map({
-        container: 'map3',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        zoom:9,
-        center:[32.57505249978601, 0.3206802144422909]
-        });
-        var marker3 = new mapboxgl.Marker({
-            draggable: true
-        })
-            .setLngLat([0, 0])
-            .addTo(map);
-        map3.on('click', function (e) {
-            document.getElementById('newlocation').value=(e.lngLat);
-        });
+
 
