@@ -29,15 +29,12 @@ function create_redFlag(e) {
 	e.preventDefault()
 	var location = document.getElementById('rlocation').value;
 	var description = document.getElementById('rdescription').value;
-	var image = document.getElementById('rimage').value;
-	var video = document.getElementById('rvideo').value;
-
-	var inter_data = {
+	var data={
 		location:location,
-		description:description,
-		image:image,
-		video:video,
-	} 
+		description:description
+	}
+	
+
 
 	fetch(urlred,{
 		method:'POST',
@@ -47,7 +44,7 @@ function create_redFlag(e) {
 				'Accept':'application/json',
 				Authorization:`Bearer ${token}`
 			},
-		body:JSON.stringify(inter_data)
+		body:JSON.stringify(data)
 	})
 	.then(res => res.json())
 	.then(data =>{
@@ -66,3 +63,36 @@ function create_redFlag(e) {
 		}
 	})
 }
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYnNzIiwiYSI6ImNqc2ExMWdyeTFoM3U0YnM4ejE2MG43YzUifQ.Ec3dgrMA8_24RNBlk2rxxA';
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom:9,
+        center:[32.57505249978601, 0.3206802144422909]
+        });
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([0, 0])
+            .addTo(map);
+        map.on('click', function (e) {
+            document.getElementById('rlocation').value=(e.lngLat);
+        });
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYnNzIiwiYSI6ImNqc2ExMWdyeTFoM3U0YnM4ejE2MG43YzUifQ.Ec3dgrMA8_24RNBlk2rxxA';
+        var map3 = new mapboxgl.Map({
+        container: 'map3',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom:9,
+        center:[32.57505249978601, 0.3206802144422909]
+        });
+        var marker3 = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([0, 0])
+            .addTo(map);
+        map3.on('click', function (e) {
+            document.getElementById('newlocation').value=(e.lngLat);
+        });
+

@@ -2,6 +2,7 @@
 var token = localStorage.getItem('access');
 var user = localStorage.getItem('user');
 var isAdmin = localStorage.getItem('role');
+var registered = localStorage.getItem('date');
 
 var span2 = document.getElementsByClassName('closeloc')[0];
 var span = document.getElementsByClassName('closedes')[0];
@@ -15,6 +16,18 @@ window.onclick = function(event) {
 		modal.style.display ='none';
 	}
 }
+var username = document.getElementById('usname');
+username.innerHTML+=user
+var joined = document.getElementById('reg');
+joined.innerHTML+=registered.split(' ')[0]
+var rejected =0;
+var resolved = 0;
+var underinvestigation = 0;
+var draft =0;
+var rrejected =0;
+var rresolved = 0;
+var runderinvestigation = 0;
+var rdraft =0;
 
 //get all interventions
 
@@ -40,18 +53,35 @@ fetch(url1,{
 		else {
 		
 			for (var i=0; i<object.length;i++){
+				if (object[i].status == 'rejected'){
+					rejected++;
+				}
+				else if(object[i].status == 'resolved'){
+					resolved++;
+				}
+				else if (object[i].status== 'under investigation'){
+					underinvestigation++;
+				}
+				else{
+					draft++;
+				}
 			
 				var interventions = document.getElementById('Interventions');
 				interventions.innerHTML+=
-				`<button id="flags" onclick="window.location.href='#${object[i].flag_id}'">${object[i].description}</button>
+				`<button id="flags" onclick="window.location.href='#${object[i].flag_id}'">intervention ${object[i].flag_id}</button>
 	            <li id="${object[i].flag_id}">
 	                <button class="hide" onclick ="view(${object[i].flag_id})">view</button>
-	                <button class="updt" onclick ="intervlocation(${object[i].flag_id})">update location</button>
-	                <button class="update" onclick = "intervdescription(${object[i].flag_id})">update description</button>
+	                <button class="updt" onclick ="intervlocation(${object[i].flag_id})">update loc</button>
+	                <button class="update" onclick = "intervdescription(${object[i].flag_id})">update desc</button>
 	                <button class="delete" onclick ="del_interv(${object[i].flag_id})">delete</button>
+	                <button class="upload" onclick="upload_interv(${object[i].flag_id})">upload</button>
 	            </li>`
 			
 		}
+		document.getElementById('draft_interv').innerHTML+=draft;
+		document.getElementById('res_interv').innerHTML+=resolved;
+		document.getElementById('rej_interv').innerHTML+=rejected;
+		document.getElementById('un_interv').innerHTML+=underinvestigation;
 		}
 		}
 
@@ -72,17 +102,34 @@ fetch(url1,{
 		}
 		else {	
 			for (var i=0; i<object2.length;i++){
+				if (object2[i].status == 'rejected'){
+					rrejected++;
+				}
+				else if(object2[i].status == 'resolved'){
+					rresolved++;
+				}
+				else if (object2[i].status== 'under investigation'){
+					runderinvestigation++;
+				}
+				else{
+					rdraft++;
+				}
 
 				var redflags = document.getElementById('Redflags');
 				redflags.innerHTML+=
-				`<button id="flags" onclick="window.location.href='#${object2[i].flag_id}'">${object2[i].description}</button>
+				`<button id="flags" onclick="window.location.href='#${object2[i].flag_id}'">red-flag ${object2[i].flag_id}</button>
 	            <li id="${object2[i].flag_id}">
 	                <button class="hide" onclick ="flagview(${object2[i].flag_id})">view</button>
-	                <button class="updt" onclick ="flaglocation(${object2[i].flag_id})">update location</button>
-	                <button class="update" onclick = "flagdescription(${object2[i].flag_id})">update description</button>
+	                <button class="updt" onclick ="flaglocation(${object2[i].flag_id})">update loc</button>
+	                <button class="update" onclick = "flagdescription(${object2[i].flag_id})">update desc</button>
 	                <button class="delete" onclick ="del_flag(${object2[i].flag_id})">delete</button>
+	                <button class="upload" onclick="upload_flag(${object2[i].flag_id})">upload</button>
 	            </li>`
 		}
+		document.getElementById('draft_flags').innerHTML+=rdraft;2
+		document.getElementById('res_flags').innerHTML+=rresolved;
+		document.getElementById('rej_flags').innerHTML+=rrejected;
+		document.getElementById('un_flags').innerHTML+=runderinvestigation;
 		}
 		
 	
@@ -363,3 +410,19 @@ function del_flag(flag_id) {
 		}
 	})
 }
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYnNzIiwiYSI6ImNqc2ExMWdyeTFoM3U0YnM4ejE2MG43YzUifQ.Ec3dgrMA8_24RNBlk2rxxA';
+        var map3 = new mapboxgl.Map({
+        container: 'map3',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom:9,
+        center:[32.57505249978601, 0.3206802144422909]
+        });
+        var marker3 = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([0, 0])
+            .addTo(map3);
+        map3.on('click', function (e) {
+            document.getElementById('newlocation').value=(e.lngLat);
+        });

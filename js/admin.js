@@ -1,7 +1,5 @@
-var span = document.getElementsByClassName('closest')[0];
-span.onclick =function () {
-	document.getElementById('newstatus').style.display ="none";
-}
+var span = document.getElementsByClassName('closestatus')[0];
+
 var role = localStorage.getItem('role');
 var token =localStorage.getItem('access');
 const url1 ="http://127.0.0.1:5000/ireporter/api/v2/interventions";

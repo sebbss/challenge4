@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/style.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
     <title>iReporter|Welcome</title>
 </head>
 <body>
@@ -22,7 +24,7 @@
             <h1>Work Hand In Hand With The Goverment</h1>
             <p>Record a <em>video</em> or take a <em>picture</em> post, create a <em>red-flag</em> or an <em>intervention</em> and help make a better Uganda</p>
         </div>
-
+me
     </section>
     <section>
         <div class="cards">
@@ -51,11 +53,7 @@
                 <label for="location"><b>geo location</b></label>
                 <input type="text" placeholder="enter location" id="rlocation" >
         
-                <label for="images"><b>images</b></label>
-                <input type="file" id="rimage" >
-        
-                <label for="videos"><b>videos</b></label>
-                <input type="file" id="rvideo" >
+                <div id='map' style='height: 200px;'></div>
         
                 <div class="clearfix">
                     <button id="mybtn" type="submit">Create red-flag</button>
@@ -75,11 +73,7 @@
                 <label for="location"><b>geo location</b></label>
                 <input type="text" placeholder="enter location" id="location" >
         
-                <label for="images"><b>images</b></label>
-                <input type="file" id="image" >
-        
-                <label for="videos"><b>videos</b></label>
-                <input type="file" id="video" >
+                <div id='map2' style='height: 200px;'></div>
         
                 <div class="clearfix">
                     <button id="mybtn" type="submit">Create intervention</button>
@@ -90,5 +84,6 @@
     </section>
     <script src="../js/flag.js"></script>
     <script src="../js/interv.js"></script>
+    
 </body>
 </html>

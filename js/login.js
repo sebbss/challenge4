@@ -36,6 +36,7 @@ window.onload = function loggedon () {
 			localStorage.setItem('access', tkn);
 			localStorage.setItem('user', username);
 			localStorage.setItem('role', response['data'][0]['user']['isAdmin']);
+			localStorage.setItem('date', response['data'][0]['user']['registered']);
 			}
 			else{
 				alert(response['message'])

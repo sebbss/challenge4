@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/style.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
     <title>UserProfile</title>
 </head>
 <body>
@@ -21,9 +23,14 @@
             <img src="../imgs/download.png">
             <p>username:<span id="usname"></span></p>
             <p>joined:<span id="reg"></span></p>
-            <p>resolved red-flags/interventions: 24</p>
-            <p>rejected red-flags/interventions: 24</p>
-            <p>red-flags/interventions under investigation: 24</p>
+            <p>draft interventions: <span id="draft_interv"></span></p>
+            <p>resolved interventions: <span id="res_interv"></span></p>
+            <p>rejected interventions: <span id="rej_interv"></span></p>
+            <p>interventions under investigation: <span id="un_interv"></span></p>
+            <p>draft red-flags: <span id="draft_flags"></span></p>
+            <p>resolved red-flags: <span id="res_flags"></span></p>
+            <p>rejected red-flags: <span id="rej_flags"></span></p>
+            <p>red-flags under investigation: <span id="un_flags"></span></p>
         </div>
         <div id="profile_info">
             <div>
@@ -40,13 +47,14 @@
     <form id="newloc" class = 'updmodal'>
         <div class = "modal_container">
             <span class="closeloc">&times;</span>
-            <label for="newlocation"><b>newlocation</b></label>
+            <label for="newlocation"><b>new location</b></label>
             <input type="text" placeholder="enter a new location" id="newlocation" >
+            <div id='map3' style='height: 200px;'></div>
             <button type ="submit">update</button>
         </div>
     </form>
     <form id="newdes" class = 'updmodal'>
-        <div class "modal_container">
+        <div class="modal_container">
             <span class="closedes">&times;</span>
             <label for="newdescript"><b>new description</b></label>
             <input type="text" placeholder="enter a new description" id="newdescription" >
@@ -56,6 +64,12 @@
     <form class="updmodal" id="viewF">
         <span class="viewI">&times;</span>
         <div id="userview" class="modal_container"></div>
+    </form>
+    <form class ="updmodal" id="upl_file">
+        <span class="ex">&times;</span>
+        <label for="image"><b>Image</b></label>
+        <input type="file" id="image">
+        <button type="submit">upload</button>
     </form>
 <script src="../js/profile.js"></script>
 </body>
