@@ -7,6 +7,7 @@ window.onload = function signup () {
 		var username = document.getElementById('username').value;
 		var firstname = document.getElementById('firstname').value;
 		var lastname = document.getElementById('lastname').value;
+		var isAdmin = document.getElementById('role').value;
 		var phoneNumber = document.getElementById('phonenumber').value;
 		var password = document.getElementById('psw').value;
 		var userData = {
@@ -16,7 +17,7 @@ window.onload = function signup () {
 			lastname:lastname,
 			phoneNumber:phoneNumber,
 			password:password,
-            
+            isAdmin:isAdmin
 		};
 		
 

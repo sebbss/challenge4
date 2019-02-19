@@ -1,5 +1,6 @@
 var span = document.getElementsByClassName('closestatus')[0];
-
+var admin = localStorage.getItem('user');
+document.getElementById('admin').innerHTML+=admin
 var role = localStorage.getItem('role');
 var token =localStorage.getItem('access');
 const url1 ="https://ireporter-challenge-3r.herokuapp.com/ireporter/api/v2/interventions";
